@@ -18,3 +18,5 @@ frames[0].save(
     duration=300,
     loop=0
 )
+
+#изменение
