@@ -2,6 +2,7 @@ import numpy as np
 from PIL import Image
 from PIL import ImageOps
 import math
+import pywt
 import cv2
 
 
@@ -52,27 +53,27 @@ def coef_corr(Image1, Image2):
     return round(Pirsons_coef, 5)
 
 
-pict_num = 7
+pict_num = 13
 spisok = [[] for i in range(int(pict_num))]
 #spisok = [[] for i in range(int(input(f"Введите количество альфа 1: ")))]
 print(spisok)
 topor_spisok = []
 
 
-img1 = ImageOps.flip(Image.open(f"E:/NIOKR_2.0/13.bmp"))
+img1 = ImageOps.flip(Image.open(f"D:/NIOKR_bd/Experiment/15.bmp"))
 img1 = np.array(img1)
-cv2.circle(img1, (img1.shape[0] // 2, img1.shape[1]//2), 20, (0,0,0), -1)
+#cv2.circle(img1, (img1.shape[0] // 2, img1.shape[1]//2), 20, (0,0,0), -1)
 
-for k in range(0, 1):
-    for l in range(0, 21):
-        for m in range(0, 21):
+for k in range(0, pict_num):
+    for l in range(0, pict_num):
+        for m in range(0, pict_num):
 
             #img1 = Image.open(f"13.bmp").rotate(180, expand=True)
             #img1 = Image.open(f"DN_alfa1_3_alfa2_11_alfa3_11.bmp")
 
-            img2 = Image.open(f"E:/NIOKR_2.0/DN_alfa1_{k}_alfa2_{l}_alfa3_{m}.bmp")
+            img2 = Image.open(f"D:/NIOKR_bd/Circonyi_data_bmp_crop-27.05.23_big_step/DN_alfa1_{k}_alfa2_{l}_alfa3_{m}.bmp")
             img2 = np.array(img2)
-            cv2.circle(img2, (img2.shape[0] // 2, img2.shape[1] // 2), 20, (0, 0, 0), -1)
+            #cv2.circle(img2, (img2.shape[0] // 2, img2.shape[1] // 2), 20, (0, 0, 0), -1)
             topor_spisok.append(coef_corr(img1, img2))
 
         spisok[k].append(topor_spisok)
